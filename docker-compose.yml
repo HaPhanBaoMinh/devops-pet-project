@@ -1,0 +1,22 @@
+version: '1.0'
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/devops.conf
+    depends_on:
+      - express
+    networks:
+      - devops-ci-cd
+  express:
+    build: .
+    container_name: backend-devops-ci-cd
+    ports:
+      - "4000:4000"
+    networks:
+      - devops-ci-cd
+
+networks:
+  devops-ci-cd:
