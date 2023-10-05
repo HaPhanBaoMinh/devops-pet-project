@@ -31,6 +31,7 @@ pipeline {
                     // Xóa phiên bản cũ của stack (nếu tồn tại)
                     sh "docker-compose -f docker-compose.yml -p $stackName rm -f"
                 }
+            }
         }
 
         stage('Start container') {
