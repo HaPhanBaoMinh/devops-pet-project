@@ -26,12 +26,11 @@ pipeline {
                     def stackName = 'devops-ci-cd'
 
                     // Dừng phiên bản cũ của stack (nếu đang chạy)
-                    sh "docker-compose -f docker-compose.yml -p $stackName down"
+                    sh "docker-compose -f docker-compose.yml -p $stackName down --rmi all"
 
                     // Xóa phiên bản cũ của stack (nếu tồn tại)
                     sh "docker-compose -f docker-compose.yml -p $stackName rm -f"
                 }
-            }
         }
 
         stage('Start container') {
