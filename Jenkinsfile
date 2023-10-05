@@ -2,19 +2,27 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Version control') {
             steps {
-                echo 'Building..'
+                sh '''
+                    docker version
+                    docker info
+                    docker-compose version
+                    git --version
+                '''
             }
         }
-        stage('Test') {
+
+        stage('Prune Docker volumes') {
             steps {
-                echo 'Testing..'
+                sh 'docker system prune -a --volumes -f' 
             }
         }
-        stage('Deploy') {
+        
+        stage('Start container') {
             steps {
-                echo 'Deploying....'
+               sh 'docker-compose up'
+               sh 'docker-compose ps'
             }
         }
     }
