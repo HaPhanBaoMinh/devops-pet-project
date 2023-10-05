@@ -1,6 +1,14 @@
 version: '1.0'
 name: devops-ci-cd
 services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/miha.conf
+    depends_on:
+      - express
   express:
     build: .
     container_name: backend-devops-ci-cd

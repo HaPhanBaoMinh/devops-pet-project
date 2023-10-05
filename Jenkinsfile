@@ -2,6 +2,20 @@ pipeline {
     agent any
 
     stages {
+        stage('SSH to Server') {
+            steps {
+                script {
+                    // Sử dụng SSH Agent để kết nối tới máy chủ
+                    sshagent(credentials: ['d-ec2-aws']) {
+                        // Thực hiện các thao tác SSH trên máy chủ ở đây
+                        sh 'echo "Connected to server via SSH"'
+                        sh 'ls -l /path/to/your/remote/directory'
+                        // Các thao tác khác trên máy chủ
+                    }
+                }
+            }
+        }
+
         stage('Version control') {
             steps {
                 sh '''
