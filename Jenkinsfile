@@ -31,7 +31,7 @@ pipeline {
             steps {
                 script {
                     // Đảm bảo bạn đã đăng nhập vào Docker Hub trước đó bằng credential Docker Hub
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub') {
                         // Xây dựng Docker Compose project
                         sh 'docker-compose build'
 
