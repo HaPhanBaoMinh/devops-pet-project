@@ -23,7 +23,7 @@ pipeline {
             steps {
                 script {
                     // Tên Docker Compose stack cần dừng và xóa
-                    def stackName = 'my-docker-stack'
+                    def stackName = 'devops-ci-cd'
 
                     // Dừng phiên bản cũ của stack (nếu đang chạy)
                     sh "docker-compose -f docker-compose.yml -p $stackName down"
