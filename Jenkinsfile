@@ -16,17 +16,6 @@ pipeline {
         //     }
         // }
 
-        stage('Version control') {
-            steps {
-                sh '''
-                    docker version
-                    docker info
-                    docker-compose version
-                    git --version
-                '''
-            }
-        }
-
         stage('Build and Push Docker Compose') {
             steps {
                 script {
