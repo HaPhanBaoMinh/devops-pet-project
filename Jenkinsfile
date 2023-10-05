@@ -19,9 +19,18 @@ pipeline {
             }
         }
 
-        stage('Docker compose dow') {
+        stage('Stop and Remove Previous Version') {
             steps {
-                sh 'docker-compose down' 
+                script {
+                    // Tên Docker Compose stack cần dừng và xóa
+                    def stackName = 'my-docker-stack'
+
+                    // Dừng phiên bản cũ của stack (nếu đang chạy)
+                    sh "docker-compose -f docker-compose.yml -p $stackName down"
+
+                    // Xóa phiên bản cũ của stack (nếu tồn tại)
+                    sh "docker-compose -f docker-compose.yml -p $stackName rm -f"
+                }
             }
         }
 
