@@ -11,6 +11,7 @@ services:
       - express
   express:
     build: .
+    image: baominh/backend-devops-ci-cd:latest
     container_name: backend-devops-ci-cd
     ports:
       - "4000:4000"
